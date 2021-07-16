@@ -1,3 +1,13 @@
+// ////////////////////////// Linked List //////////////////////////////
+// class Linked{
+// 	constructor()
+// 	append()
+// 	prepend()
+// 	traverse()
+// 	insert()
+// 	remove()
+// }
+
 class LinkedList {
 	// constructor function gets value and creates head that has value: value and next: null
 	// set tail = head
@@ -122,53 +132,3 @@ data.remove(1);
 // {10 -> 5 -> null}
 data.insert(1, 99);
 // {10 -> 99 -> 5 -> null}
-
-// class Link list {
-// constructor(value){
-// create head
-// create tail
-// create length
-//  }
-// //////////////////////
-// append(){
-// create newNode
-// change this.tail.next
-// change this.tail
-// add to length
-// return this
-// }
-/////////////////////////
-// prepend(value){
-// create newNode
-// set newNode to point to current head
-// set current head to become newNode
-// add to length
-// return this
-// }
-// ////////////////////////
-// insert(index, value){
-// 2 conditions if index is = 0 OR greater than list length
-// create newNode
-// create leader
-// create holdingPointer
-// leader.next to point to newNode
-// newNode.next to point to holderPointer
-// add to length
-// return this
-// }
-// /////////////////////////
-// traverseToIndex(index){
-// create counter
-// create currentNode to equal head
-// create while function that sets
-// return currentNode
-// }
-// /////////////////////////
-// remove(index){
-// create leader
-// create unWantedNode
-// set leader.next to point to unwantedNode.next
-// subtract from length
-// return this
-// }
-// }

@@ -1,3 +1,12 @@
+// //////////////////////// HASH TABLE //////////////////
+// function hash()
+
+// class Hash{
+// 	constructor()
+// 	setItem()
+// 	getItem()
+// }
+
 // hash funciton to prevent collisions and enter elements in different keys
 // using a for loop the function grabs the string and table length
 // loops through string length and returns hash = ((hash + s.charCodeAt(i)) * i) % tableSize;

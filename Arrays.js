@@ -203,3 +203,31 @@ function isMonotonic(array) {
 		return false;
 	}
 }
+
+// /////////////////// consisten Strings ///////////
+
+let allowed = "abc";
+let words = ["a", "bd", "aaab", "baa", "badab"];
+
+var countConsistentStrings = function (allowed, words) {
+	let allow = Array.from(allowed.split(""));
+	console.log(allow);
+	let count = 0;
+
+	words.forEach((item) => {
+		console.log(item);
+		for (let i = 0; i < item.length; i++) {
+			console.log(item[i]);
+			if (!allow.includes(item[i])) {
+				console.log(item[i]);
+				console.log(count);
+				count++;
+				break;
+			}
+		}
+	});
+	count = words.length - count;
+	return count;
+};
+
+console.log(countConsistentStrings(allowed, words));

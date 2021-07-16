@@ -1,4 +1,5 @@
 // //////////////////////// HASH TABLE //////////////////
+// can set any index of any kind
 // function hash()
 
 // class Hash{
@@ -91,5 +92,209 @@ const myTable = new HashTable(5);
 myTable.setItem("firstName", "bob");
 myTable.setItem("lastName", "perez");
 myTable.setItem("bod", "1/2/3");
-console.log(myTable.table[2]);
+// 				 key       value
+// [ [[lastName, perez]], empty , [[bod, 1/2/3]], empty, [[firstName, bob]] ]
+console.log(myTable.table);
 console.log(myTable.table.length);
+
+/////////////////////////////find amount of identical pairs//////////////////////////
+// creates map of unique values/keys = 1 then if they repeat add 1 to that keys value;
+
+// function(){
+// 	create map
+// 	create Counter
+// 	for(){
+// 		if(map[index] exist){
+// 			add to counter
+// 			add to map index
+// 		}
+// 		// if it doesnt exist
+// 		else{
+// 			map[index] = 1
+// 		}
+// 	}
+// 	return counter
+// }
+
+function findIdenticalPairs(nums) {
+	const map = {};
+	let count = 0;
+
+	for (let i = 0; i < nums.length; i++) {
+		// if exist add to count
+
+		if (map[nums[i]]) {
+			count += map[nums[i]];
+			map[nums[i]]++;
+		} else {
+			map[nums[i]] = 1;
+		}
+	}
+
+	console.log(map);
+	console.log(count);
+	return count;
+}
+findIdenticalPairs([1, 2, 3, 1, 1, 3]);
+
+/////////////////////////// jewels and stones | compare two array or strings  ////////////////////////
+// creates map of 1st array elements then checks if any keys are in the second array
+// if it does add to counter
+
+function count(Jewels, Stones) {
+	let hash = {};
+	let count = 0;
+
+	for (let j = 0; j < Jewels.length; j++) {
+		console.log(Jewels[j]);
+		hash[Jewels[j]] = Jewels[j];
+	}
+
+	console.log(hash);
+
+	for (let i = 0; i < Stones.length; i++) {
+		console.log(Stones[i]);
+		if (hash[Stones[i]]) {
+			count++;
+		}
+	}
+	console.log(count);
+	return count;
+}
+
+count("aA", "aAAbbbb");
+
+////////////////////////////// smaller than current ////////////////////
+// create counter , index , map {}, result []
+// loop through and add all elements of nums to object
+// while index !== param.length
+// loop through array and compare object
+// add counter to result[]
+// return result[]
+
+var smallerNumbersThanCurrent = function (nums) {
+	let map = {};
+	let index = 0;
+	let counter = 0;
+	let result = [];
+	//     {6: 6, 5:5, 4:4, 8:8}
+	for (let i = 0; i < nums.length; i++) {
+		map[nums[i]] = nums[i];
+	}
+	console.log(map);
+
+	while (index !== nums.length) {
+		for (let j = 0; j < nums.length; j++) {
+			console.log(nums[j], "-", map[nums[index]]);
+			if (map[nums[index]] > nums[j]) {
+				counter++;
+			}
+		}
+		result.push(counter);
+		counter = 0;
+		index++;
+	}
+
+	console.log(result);
+	return result;
+
+	// let counter = 0;
+	// let result = [];
+
+	// for (let i = 0; i < nums.length; i++) {
+	// 	for (let j = 0; j < nums.length; j++) {
+	// 		if (nums[i] > nums[j]) {
+	// 			counter++;
+	// 		}
+	// 	}
+	// 	result.push(counter);
+	// 	counter = 0;
+	// }
+	// console.log(result)
+	// return result;
+};
+
+console.log(smallerNumbersThanCurrent([6, 5, 4, 8]));
+
+////////////////////////// alpahbet check /////////////////////
+// create object
+// insert elelemts on sentence in array
+// if object length is less than 26 return false
+
+var checkIfPangram = function (sentence) {
+	let res = {};
+	for (let i = 0; i < sentence.length; i++) {
+		console.log(sentence[i]);
+		res[sentence[i]] = 1;
+	}
+	console.log(res);
+	// length of object is currently 3
+	if (Object.entries(res).length < 26) {
+		return false;
+	}
+	return true;
+};
+
+console.log(checkIfPangram("abc"));
+
+// ////////////////////// mors code //////////////////////////
+var uniqueMorseRepresentations = function (words) {
+	const morse = [
+		".-",
+		"-...",
+		"-.-.",
+		"-..",
+		".",
+		"..-.",
+		"--.",
+		"....",
+		"..",
+		".---",
+		"-.-",
+		".-..",
+		"--",
+		"-.",
+		"---",
+		".--.",
+		"--.-",
+		".-.",
+		"...",
+		"-",
+		"..-",
+		"...-",
+		".--",
+		"-..-",
+		"-.--",
+		"--..",
+	];
+
+	let map = {};
+
+	// creates map
+	for (let i = 0; i < morse.length; i++) {
+		// map { a: '.-', b: '-...', ect.}
+		map[String.fromCharCode(i + 97)] = morse[i];
+	}
+
+	let transform = [];
+	for (let word of words) {
+		console.log(word);
+		let str = "";
+		// this loop creates words in morse
+		for (let char of word) {
+			console.log(char);
+			str += map[char];
+		}
+
+		console.log(str);
+		// if it doesnt include string add str to transform
+		if (!transform.includes(str)) {
+			console.log(str);
+			transform.push(str);
+		}
+	}
+	console.log(transform);
+	return transform.length;
+};
+
+console.log(uniqueMorseRepresentations(["gin", "zen", "gig", "msg"]));

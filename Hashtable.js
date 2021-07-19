@@ -97,8 +97,39 @@ myTable.setItem("bod", "1/2/3");
 console.log(myTable.table);
 console.log(myTable.table.length);
 
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////// QUESTIONS FOR HASH MAPS /////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
+// 2 sum , sentence panagram, jewels and stones, identical pairs
+
+/////////////////////////////////---- 2 SUM ----- ///////////////////////////////////
+// create obj
+// loop through array{
+// create tempMatch
+// if tempMatch exist return tempMatch and array[i]
+// else add to obj
+// }
+// return []
+function twoNumberSum(array, targetSum) {
+	let data = {};
+	for (let i = 0; i < array.length; i++) {
+		let tempMatch = targetSum - array[i];
+
+		if (data[tempMatch]) {
+			return [tempMatch, array[i]];
+		} else {
+			data[array[i]] = true;
+		}
+	}
+
+	return [];
+}
+
+console.log(twoNumberSum([3, 5, -4, 8, 9, -4, 11, 1, -1, 6], 10));
+
 /////////////////////////////find amount of identical pairs//////////////////////////
-// creates map of unique values/keys = 1 then if they repeat add 1 to that keys value;
+// creates map of unique values/keys = 1 and while adding check if they repeat add 1 to that keys value;
 
 // function(){
 // 	create map
@@ -135,7 +166,7 @@ function findIdenticalPairs(nums) {
 	console.log(count);
 	return count;
 }
-findIdenticalPairs([1, 2, 3, 1, 1, 3]);
+findIdenticalPairs([1, 1, 1, 1]);
 
 /////////////////////////// jewels and stones | compare two array or strings  ////////////////////////
 // creates map of 1st array elements then checks if any keys are in the second array
@@ -155,6 +186,8 @@ function count(Jewels, Stones) {
 	for (let i = 0; i < Stones.length; i++) {
 		console.log(Stones[i]);
 		if (hash[Stones[i]]) {
+			console.log(i);
+			console.log(hash[Stones[i]]);
 			count++;
 		}
 	}
@@ -163,58 +196,6 @@ function count(Jewels, Stones) {
 }
 
 count("aA", "aAAbbbb");
-
-////////////////////////////// smaller than current ////////////////////
-// create counter , index , map {}, result []
-// loop through and add all elements of nums to object
-// while index !== param.length
-// loop through array and compare object
-// add counter to result[]
-// return result[]
-
-var smallerNumbersThanCurrent = function (nums) {
-	let map = {};
-	let index = 0;
-	let counter = 0;
-	let result = [];
-	//     {6: 6, 5:5, 4:4, 8:8}
-	for (let i = 0; i < nums.length; i++) {
-		map[nums[i]] = nums[i];
-	}
-	console.log(map);
-
-	while (index !== nums.length) {
-		for (let j = 0; j < nums.length; j++) {
-			console.log(nums[j], "-", map[nums[index]]);
-			if (map[nums[index]] > nums[j]) {
-				counter++;
-			}
-		}
-		result.push(counter);
-		counter = 0;
-		index++;
-	}
-
-	console.log(result);
-	return result;
-
-	// let counter = 0;
-	// let result = [];
-
-	// for (let i = 0; i < nums.length; i++) {
-	// 	for (let j = 0; j < nums.length; j++) {
-	// 		if (nums[i] > nums[j]) {
-	// 			counter++;
-	// 		}
-	// 	}
-	// 	result.push(counter);
-	// 	counter = 0;
-	// }
-	// console.log(result)
-	// return result;
-};
-
-console.log(smallerNumbersThanCurrent([6, 5, 4, 8]));
 
 ////////////////////////// alpahbet check /////////////////////
 // create object
@@ -236,6 +217,24 @@ var checkIfPangram = function (sentence) {
 };
 
 console.log(checkIfPangram("abc"));
+
+/////////////////////////// remove duplicates ////////////////
+
+function removeDups(nums) {
+	let data = {};
+	let unique = [];
+	for (let i = 0; i < nums.length; i++) {
+		if (!data[nums[i]]) {
+			unique.push(nums[i]);
+		}
+		data[nums[i]] = nums[i];
+	}
+	console.log(data);
+	console.log(unique);
+	return unique;
+}
+
+removeDups([2, 4, 4, 5, 4, 4]);
 
 // ////////////////////// mors code //////////////////////////
 var uniqueMorseRepresentations = function (words) {
@@ -298,3 +297,25 @@ var uniqueMorseRepresentations = function (words) {
 };
 
 console.log(uniqueMorseRepresentations(["gin", "zen", "gig", "msg"]));
+
+// ////////////////////// sum of unique ///////////////////
+var sumOfUnique = function (nums) {
+	let len = nums.length;
+	let obj = {};
+	let sum = 0;
+	for (let i = 0; i < len; i++) {
+		if (obj[nums[i]] === undefined) {
+			obj[nums[i]] = 0;
+		}
+		obj[nums[i]]++;
+	}
+	for (let i in obj) {
+		if (obj[i] === 1) {
+			sum += parseInt(i);
+		}
+	}
+	console.log(sum);
+	return sum;
+};
+
+sumOfUnique([1, 1, 1, 1, 1, 2]);
